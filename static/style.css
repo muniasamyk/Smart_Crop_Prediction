@@ -1,0 +1,242 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Montserrat', Arial, sans-serif;
+    height: 100%;
+}
+
+.background-image {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0; top: 0;
+    z-index: 0;
+    background: url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L2EwMDkta2Fib29tcGljcy0wODMzLmpwZw.jpg') no-repeat center center fixed;
+    background-size: cover;
+    filter: brightness(0.6) blur(2px);
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 60px auto;
+    padding: 40px 32px;
+    background: rgba(255, 255, 255, 0.32); /* More transparent */
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    backdrop-filter: blur(8px); /* Slightly stronger blur for a softer effect */
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 24px 8px;
+        max-width: 96vw;
+    }
+}
+
+.prediction-card {
+    background: rgba(255,255,255,0.4);
+    border-radius: 26px;
+    padding: 40px 46px 32px 46px;
+    box-shadow: 0 8px 46px rgba(56, 184, 34, 0.20), 0 4px 24px rgba(78,84,200,0.13);
+    max-width: 430px;
+    min-width: 340px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(8px);
+    animation: fadeInUp 0.9s cubic-bezier(.62,.28,.23,.99);
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px);}
+    to   { opacity: 1; transform: none;}
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+    justify-content: center;
+}
+.icon {
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+    border-radius: 12px;
+    background: #e0f1e7;
+    box-shadow: 0 2px 8px #53d9af33;
+}
+h1 {
+    color: #141f9c;
+    font-weight: 700;
+    font-size: 1.5em;
+    margin: 0;
+    letter-spacing: .5px;
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+form {
+    margin-top: 18px;
+}
+.input-row {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+.input-group {
+    flex: 1 1 140px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.input-group.full {
+    flex-basis: 100%;
+}
+.input-group label {
+    color: #243b27;
+    font-size: 1em;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+.input-group input {
+    color: #222;            /* Makes input text dark and readable */
+    font-weight: 500;       /* Optional: Makes it a bit bolder for clarity */
+    /* Keep your other styles as they are */
+    padding: 8px 10px;
+    border: 1.3px solid #e3e3e3;
+    border-radius: 8px;
+    font-size: 1em;
+    outline: none;
+    transition: border .13s;
+    background: #f9fbfd;
+}
+
+.input-group input:-webkit-autofill {
+    -webkit-text-fill-color: #222;
+    transition: background-color 5000s ease-in-out 0s;
+}
+.input-group input:focus {
+    border: 1.5px solid #277e54;
+    background: #f2f7fd;
+}
+button[type="submit"] {
+    background: linear-gradient(90deg, #53d9af 0%, #4e54c8 100%);
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 9px;
+    padding: 14px 0;
+    width: 100%;
+    font-size: 1.16em;
+    cursor: pointer;
+    margin-top: 16px;
+    box-shadow: 0 2px 12px #53d9af2b;
+    transition: background 0.22s, box-shadow 0.22s;
+}
+button[type="submit"]:hover {
+    background: linear-gradient(90deg, #4e54c8 0%, #53d9af 100%);
+    box-shadow: 0 4px 16px #4e54c84b;
+}
+#result {
+    margin-top: 28px;
+    font-size: 1.13em;
+    text-align: center;
+}
+.crop {
+    font-size: 1.5em;
+    color: #3ed88e;
+    font-weight: 700;
+    margin-top: 7px;
+    letter-spacing: 1px;
+}
+@media (max-width: 600px) {
+    .prediction-card {
+        padding: 20px 4vw;
+        min-width: 0;
+    }
+    .input-row {
+        flex-direction: column;
+        gap: 6px;
+    }
+}
+
+/* Message Bot Styles */
+.message-bot {
+    position: fixed;
+    top: 38px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+    min-width: 320px;
+    max-width: 95vw;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 32px rgba(0,0,0,0.13);
+    border: 2px solid #7ee8fa;
+    animation: slideDown 0.4s;
+}
+
+.msg-bot-content {
+    padding: 24px 26px 18px 26px;
+    position: relative;
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.msg-bot-close {
+    position: absolute;
+    right: 14px;
+    top: 12px;
+    font-size: 1.5rem;
+    color: #a7bfcf;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.msg-bot-header {
+    display: flex;
+    align-items: center;
+    font-size: 1.15rem;
+    color: #16a085;
+    margin-bottom: 6px;
+}
+
+.msg-bot-body {
+    margin-bottom: 12px;
+    font-size: 1.05rem;
+    color: #374151;
+}
+
+.msg-bot-body p {
+    margin: 3px 0;
+}
+
+.msg-bot-footer {
+    background: linear-gradient(90deg, #7ee8fa 0%, #eec0c6 100%);
+    color: #49796b;
+    text-align: center;
+    border-radius: 9px;
+    font-size: 1rem;
+    padding: 7px;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+@keyframes slideDown {
+    from { top: 0; opacity: 0; }
+    to { top: 38px; opacity: 1; }
+}
+
+.e-trading-body .background-image {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0; top: 0;
+    z-index: 0;
+    background: url('https://cdn.prod.website-files.com/65e8c28f089978cd40da4f5c/66f2bff023812626c773d134_Blog%20How%20to%20Sell%20Farm%20Products%20to%20Grocery%20Stores%20%26%20Supermarkets.webp') no-repeat center center fixed;
+    background-size: cover;
+    filter: brightness(0.6) blur(2px);
+}

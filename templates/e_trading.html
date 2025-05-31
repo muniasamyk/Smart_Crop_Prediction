@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sell Your Harvest - E-Trading Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=13">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;500;400&display=swap" rel="stylesheet">
+</head>
+<body class="e-trading-body">
+        <div class="background-image"></div>
+    {% if farmer_details %}
+    <div id="msgBot" class="message-bot">
+        <div class="msg-bot-content">
+            <span class="msg-bot-close" onclick="document.getElementById('msgBot').style.display='none'">&times;</span>
+            <div class="msg-bot-header">
+                <img src="https://cdn-icons-png.flaticon.com/512/590/590685.png" style="width:36px;margin-right:10px;">
+                <strong>Product Posted!</strong>
+            </div>
+            <div class="msg-bot-body">
+                <p><b>Product:</b> {{ farmer_details.product }}</p>
+                <p><b>Quantity:</b> {{ farmer_details.quantity }} kg</p>
+                <p><b>Price:</b> ₹{{ farmer_details.price }}/kg</p>
+                <p><b>Farmer:</b> {{ farmer_details.seller }}</p>
+                <p><b>Contact:</b> {{ farmer_details.contact }}</p>
+            </div>
+            <div class="msg-bot-footer">
+                Thank you, {{ farmer_details.seller }}! Your product is now posted in our system.
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="background-image"></div>
+    <div class="container e-trading-container">
+        <h1 class="main-heading">🌾 Sell Your Harvest</h1>
+        <p class="subtitle">You can post Your freshly harvested products for sale here!</p>
+        
+        <h2 class="form-title">Post Your Product</h2>
+        <form class="e-trade-form" action="/e-trading" method="post" autocomplete="off">
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="product">Product</label>
+                    <input type="text" id="product" name="product" required>
+                </div>
+                <div class="input-group">
+                    <label for="quantity">Quantity (kg)</label>
+                    <input type="number" min="1" id="quantity" name="quantity" required>
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="price">Price (₹/kg)</label>
+                    <input type="number" min="1" id="price" name="price" required>
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="seller">Your Name</label>
+                    <input type="text" id="seller" name="seller" required>
+                </div>
+                <div class="input-group">
+                    <label for="contact">Contact Number</label>
+                    <input type="text" id="contact" name="contact" required>
+                </div>
+            </div>
+            <button type="submit" class="btn-sell">Sell Product</button>
+        </form>
+    </div>
+    <script>
+    window.onload = function() {
+        var box = document.getElementById('msgBot');
+        if(box) {
+            setTimeout(function() { box.style.display = 'none'; }, 4000);
+        }
+    };
+    </script>
+</body>
+</html>
